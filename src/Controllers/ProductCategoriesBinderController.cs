@@ -42,15 +42,4 @@ namespace PriceStoreCategorizer.Controllers
         {
         }
     }
-
-    [Route("api/[controller]")]
-    public class ProductCategoriesAutoBinderController : Controller
-    {
-        
-        [HttpPost]
-        public void Post([FromBody]string productName)
-        {
-            
-        }
-    }
 }
