@@ -19,9 +19,21 @@ namespace PriceStoreCategorizer.Controllers
         }
         
         [HttpPost]
-        public void Post([FromBody]string productName)
+        public IActionResult Post([FromBody]string productName)
         {
-            _productBinderAppService.AutoBind(productName);
+            if(!ModelState.IsValid)  
+                return BadRequest();
+
+            try
+            {
+                _productBinderAppService.AutoBind(productName);    
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
+
+            return Ok();
         }
     }
 }
