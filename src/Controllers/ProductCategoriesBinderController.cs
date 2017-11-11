@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using PriceStoreCategorizer.ViewModels;
 
 namespace PriceStoreCategorizer.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class ProductCategoriesBinderController : Controller
     {
         // GET api/values
         [HttpGet]
@@ -25,7 +26,7 @@ namespace PriceStoreCategorizer.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]ProductBinderVm productBinderVM)
         {
         }
 
@@ -39,6 +40,17 @@ namespace PriceStoreCategorizer.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+        }
+    }
+
+    [Route("api/[controller]")]
+    public class ProductCategoriesAutoBinderController : Controller
+    {
+        
+        [HttpPost]
+        public void Post([FromBody]string productName)
+        {
+            
         }
     }
 }
