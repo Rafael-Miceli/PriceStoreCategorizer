@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using PriceStoreCategorizer.ApplicationServices;
+using PriceStoreCategorizer.ApplicationServices.Interfaces;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace PriceStoreCategorizer
 {
@@ -24,6 +27,14 @@ namespace PriceStoreCategorizer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "Price Store Product Categorizer", Version = "v1" });
+            });
+
+            //Injecting Custom Depencies
+            services.AddTransient<IProductBinderAppService, ProductBinderAppService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,6 +44,13 @@ namespace PriceStoreCategorizer
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Price Store Product Categorizer V0.1");
+            });
 
             app.UseMvc();
         }
