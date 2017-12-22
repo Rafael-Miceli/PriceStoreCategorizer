@@ -21,7 +21,7 @@ namespace PriceStoreCategorizer.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]string productName)
         {
-            if(!ModelState.IsValid)  
+            if(!ModelState.IsValid || string.IsNullOrEmpty(productName))  
                 return BadRequest();
 
             try
