@@ -27,5 +27,25 @@ namespace tests
 
             Assert.Equal("Legumes", result);
         }
+
+        [Fact]
+        public void Dado_O_Produto_Alface_Entao_Retorne_A_Categoria_Verduras()
+        {
+            var sut = new ProductBinderAppService();
+
+            var result = sut.GetProductCategory("Alface");
+
+            Assert.Equal("Verduras", result);
+        }
+
+        [Fact]
+        public void Dado_O_Produto_SabaoEmPo_Entao_Retorne_A_Categoria_MaterialDeLimpeza()
+        {
+            var sut = new ProductBinderAppService();
+
+            var result = sut.GetProductCategory("Sabão em Pó");
+
+            Assert.Equal("Materiais de Limpeza", result);
+        }
     }
 }
