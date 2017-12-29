@@ -23,6 +23,8 @@ namespace tests
         {
             var sut = new ProductBinderAppService();
 
+            sut.BindProductToCategory("Tomate", "Legumes");
+
             var result = sut.GetProductCategory("Tomate");
 
             Assert.Equal("Legumes", result);
@@ -33,6 +35,8 @@ namespace tests
         {
             var sut = new ProductBinderAppService();
 
+            sut.BindProductToCategory("Alface", "Verduras");
+
             var result = sut.GetProductCategory("Alface");
 
             Assert.Equal("Verduras", result);
@@ -42,6 +46,32 @@ namespace tests
         public void Dado_O_Produto_SabaoEmPo_Entao_Retorne_A_Categoria_MaterialDeLimpeza()
         {
             var sut = new ProductBinderAppService();
+
+            sut.BindProductToCategory("Sabão em Pó", "Materiais de Limpeza");
+
+            var result = sut.GetProductCategory("Sabão em Pó");
+
+            Assert.Equal("Materiais de Limpeza", result);
+        }
+
+        [Fact]
+        public void Dado_O_Produto_SabaoEmPo_Com_Categoria_MaterialDeLimpeza_Entao_Conecte_Um_Ao_Outro()
+        {
+            var sut = new ProductBinderAppService();
+
+            sut.BindProductToCategory("Sabão em Pó", "Materiais de Limpeza");
+
+            var result = sut.GetProductCategory("Sabão em Pó");
+
+            Assert.Equal("Materiais de Limpeza", result);
+        }
+
+        [Fact]
+        public void Dado_O_Produto_Milho_Com_Categoria_Legumes_Quando_AutoBindingEntao_Conecte_Um_Ao_Outro()
+        {
+            var sut = new ProductBinderAppService();
+
+            sut.BindProductToCategory("Sabão em Pó", "Materiais de Limpeza");
 
             var result = sut.GetProductCategory("Sabão em Pó");
 
